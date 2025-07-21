@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Poor Bunny - a fun and challenging online running game. Help the bunny escape danger!">
+    <meta name="keywords" content="poor bunny, online game, running game, bunny game, free game">
+    <title>Poor Bunny - Free Online Running Game</title>
+    
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Poor Bunny",
+      "url": "https://poorbunny.run/",
+      "description": "Poor Bunny is an exciting online running game where you help a cute bunny escape from danger. Jump over obstacles and collect coins to achieve high scores!",
+      "gamePlatform": "Web browser",
+      "genre": "Runner, Arcade",
+      "image": "https://poorbunny.run/og-image.jpg"
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #8a2be2;
+            --primary-light: #9d4fe9;
+            --secondary: #ff6b6b;
+            --background: #f8f9fa;
+            --text: #333;
+            --light-text: #666;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #6a11cb);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 100% 100%;
+            opacity: 0.2;
+        }
+        
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            opacity: 0.9;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        /* Game Section */
+        .game-section {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .game-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+            min-height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(138, 43, 226, 0.2);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: absolute;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        #game-frame {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 8px;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .game-frame-loaded {
+            opacity: 1 !important;
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+        }
+        
+        .btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        /* Game Info */
+        .game-info {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .info-card {
+            background: linear-gradient(to bottom right, #f9f7ff, #f0ebff);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+        }
+        
+        .instructions {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff8f8;
+            border-left: 4px solid var(--secondary);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .instructions h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #333, #222);
+            color: var(--white);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .game-container {
+                min-height: 350px;
+            }
+            
+            #game-frame {
+                height: 350px;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .game-container {
+                min-height: 300px;
+            }
+            
+            #game-frame {
+                height: 300px;
+            }
+            
+            .btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1 class="logo">Poor Bunny</h1>
+            <p class="tagline">Help the adorable bunny escape danger in this fast-paced running adventure!</p>
+        </div>
+    </header>
+    
+    <main class="main-content container">
+        <!-- Game Section -->
+        <section class="game-section">
+            <h2 class="section-title">Play Poor Bunny</h2>
+            <div class="game-container">
+                <div class="loader" id="loader"></div>
+                <iframe id="game-frame" src="https://cpsgames.org/splash/poor-bunny" title="Poor Bunny Game" allow="autoplay; fullscreen"></iframe>
+            </div>
+            
+            <div class="game-controls">
+                <button class="btn" id="fullscreen-btn">Full Screen</button>
+                <button class="btn btn-secondary" id="refresh-btn">Restart Game</button>
+            </div>
+        </section>
+        
+        <!-- Game Information -->
+        <section class="game-info">
+            <h2 class="section-title">About Poor Bunny</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Game Story</h3>
+                    <p>Poor Bunny is a thrilling endless runner game where you take on the role of a cute bunny trying to escape from various dangers. Jump over obstacles, avoid enemies, and collect coins to unlock new characters and power-ups!</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Features</h3>
+                    <ul>
+                        <li>Simple one-touch controls</li>
+                        <li>Multiple unlockable characters</li>
+                        <li>Power-ups and special abilities</li>
+                        <li>Global leaderboards</li>
+                        <li>Daily challenges and rewards</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h4>How to Play</h4>
+                <ul>
+                    <li><strong>Tap or click</strong> to make the bunny jump</li>
+                    <li>Jump over obstacles and gaps to keep running</li>
+                    <li>Collect coins to unlock new characters and power-ups</li>
+                    <li>Avoid enemies and dangerous traps</li>
+                    <li>Complete daily challenges for special rewards</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Support</a>
+                <a href="#">About</a>
+            </div>
+            <p class="copyright">© 2023 PoorBunny.run - All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Handle iframe loading
+        const gameFrame = document.getElementById('game-frame');
+        const loader = document.getElementById('loader');
+        
+        gameFrame.addEventListener('load', function() {
+            // Hide loader and show game
+            loader.style.display = 'none';
+            gameFrame.classList.add('game-frame-loaded');
+        });
+        
+        // Fullscreen button
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        fullscreenBtn.addEventListener('click', function() {
+            if (gameFrame.requestFullscreen) {
+                gameFrame.requestFullscreen();
+            } else if (gameFrame.mozRequestFullScreen) { // Firefox
+                gameFrame.mozRequestFullScreen();
+            } else if (gameFrame.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                gameFrame.webkitRequestFullscreen();
+            } else if (gameFrame.msRequestFullscreen) { // IE/Edge
+                gameFrame.msRequestFullscreen();
+            }
+        });
+        
+        // Refresh button
+        const refreshBtn = document.getElementById('refresh-btn');
+        refreshBtn.addEventListener('click', function() {
+            // Show loader again
+            loader.style.display = 'block';
+            gameFrame.classList.remove('game-frame-loaded');
+            
+            // Reload iframe
+            const iframeSrc = gameFrame.src;
+            gameFrame.src = '';
+            setTimeout(() => {
+                gameFrame.src = iframeSrc;
+            }, 100);
+        });
+        
+        // Add slight delay to simulate loading if needed
+        setTimeout(() => {
+            if (gameFrame.classList.contains('game-frame-loaded')) return;
+            loader.style.display = 'none';
+            gameFrame.classList.add('game-frame-loaded');
+        }, 2000);
+    </script>
+</body>
+</html>
