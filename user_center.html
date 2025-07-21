@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}My Center - GameHub{% endblock %}
+{% block content %}
+<h2>My Center</h2>
+<p><b>Username:</b> {{ current_user.username }}</p>
+<p><b>Email:</b> {{ current_user.email }}</p>
+<h3>My Favorite Games</h3>
+<ul>
+    {% for g in favorite_games %}
+    <li><a href="{{ url_for('game_detail', game_id=g.id) }}">{{ g.name }}</a></li>
+    {% else %}
+    <li>No favorites yet.</li>
+    {% endfor %}
+</ul>
+<h3>My Comments</h3>
+<ul>
+    {% for c in comments %}
+    <li>{{ c.game.name }}: {{ c.content }} ({{ c.rating }}★)</li>
+    {% else %}
+    <li>No comments yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %} 

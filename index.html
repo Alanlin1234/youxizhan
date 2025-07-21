@@ -1,211 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play the most popular online web games for free! Enjoy 2048, Tetris, Slither.io, Chrome Dino, Minesweeper, and more directly in your browser. Modern, fast, and mobile-friendly.">
-    <meta name="keywords" content="online games, web games, play games, 2048, Tetris, Slither.io, Chrome Dino, Minesweeper, Pacman, Flappy Bird, Mario, Cut the Rope, HexGL, Crossy Road, Line Rider, free games">
-    <title>Online Web Game Hub - Play Free Games</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f9f9f9;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar {
-            width: 100%;
-            background: #222;
-            color: #fff;
-            padding: 16px 0 12px 0;
-            text-align: center;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 40px auto 0 auto;
-            padding: 24px;
-        }
-        h1 {
-            text-align: center;
-            color: #222;
-            margin-bottom: 32px;
-            font-size: 2.3rem;
-            letter-spacing: 1px;
-        }
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 32px;
-        }
-        .game-card {
-            background: #fff;
-            border-radius: 14px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-            padding: 20px 18px 18px 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: box-shadow 0.2s;
-        }
-        .game-card:hover {
-            box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-        }
-        .game-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #1a237e;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .game-desc {
-            font-size: 1rem;
-            color: #444;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-        .game-iframe {
-            width: 100%;
-            min-height: 420px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            background: #fafafa;
-        }
-        .open-btn {
-            display: inline-block;
-            margin: 6px 0 0 0;
-            padding: 6px 18px;
-            background: #1976d2;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.18s;
-        }
-        .open-btn:hover {
-            background: #0d47a1;
-        }
-        footer {
-            margin-top: 48px;
-            padding: 24px 0 12px 0;
-            background: #222;
-            color: #eee;
-            text-align: center;
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-        @media (max-width: 600px) {
-            .container { padding: 8px; }
-            .game-iframe { min-height: 320px; }
-        }
-    </style>
-</head>
-<body>
-<div class="navbar">Online Web Game Hub</div>
-<div class="container">
-    <h1>Play the Most Popular Web Games Online</h1>
-    <div class="games-grid">
-        <!-- 2048 -->
-        <section class="game-card" id="game-2048">
-            <h2 class="game-title">2048</h2>
-            <div class="game-desc">Join the numbers and get to the 2048 tile! A simple but addictive puzzle game.</div>
-            <iframe class="game-iframe" src="https://play2048.co/" title="2048 Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://play2048.co/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Tetris -->
-        <section class="game-card" id="game-tetris">
-            <h2 class="game-title">Tetris</h2>
-            <div class="game-desc">The classic block-stacking game. Arrange falling blocks to clear lines and score points.</div>
-            <iframe class="game-iframe" src="https://tetris.com/play-tetris" title="Tetris Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://tetris.com/play-tetris" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Slither.io -->
-        <section class="game-card" id="game-slither">
-            <h2 class="game-title">Slither.io</h2>
-            <div class="game-desc">Control your snake, eat to grow, and compete with players worldwide in this multiplayer hit.</div>
-            <iframe class="game-iframe" src="https://slither.io/" title="Slither.io Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://slither.io/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Chrome Dino -->
-        <section class="game-card" id="game-dino">
-            <h2 class="game-title">Chrome Dino</h2>
-            <div class="game-desc">Jump over obstacles and run as far as you can in this endless runner game inspired by Chrome's offline dinosaur.</div>
-            <iframe class="game-iframe" src="https://chromedino.com/" title="Chrome Dino Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://chromedino.com/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Minesweeper -->
-        <section class="game-card" id="game-minesweeper">
-            <h2 class="game-title">Minesweeper</h2>
-            <div class="game-desc">Test your logic and memory in this classic puzzle game. Avoid the mines and clear the board!</div>
-            <iframe class="game-iframe" src="https://minesweeperonline.com/" title="Minesweeper Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://minesweeperonline.com/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Cut the Rope -->
-        <section class="game-card" id="game-cuttherope">
-            <h2 class="game-title">Cut the Rope</h2>
-            <div class="game-desc">Feed candy to Om Nom by cutting ropes in this fun physics-based puzzle game.</div>
-            <iframe class="game-iframe" src="https://cuttherope.ie/" title="Cut the Rope Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://cuttherope.ie/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Pacman -->
-        <section class="game-card" id="game-pacman">
-            <h2 class="game-title">Pacman</h2>
-            <div class="game-desc">Eat all the dots and avoid the ghosts in this timeless arcade classic.</div>
-            <iframe class="game-iframe" src="https://www.google.com/logos/2010/pacman10-i.html" title="Pacman Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://www.google.com/logos/2010/pacman10-i.html" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Flappy Bird -->
-        <section class="game-card" id="game-flappybird">
-            <h2 class="game-title">Flappy Bird</h2>
-            <div class="game-desc">Tap to fly and avoid the pipes in this simple but challenging game.</div>
-            <iframe class="game-iframe" src="https://flappybird.io/" title="Flappy Bird Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://flappybird.io/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- 2048 Cupcakes -->
-        <section class="game-card" id="game-2048cupcakes">
-            <h2 class="game-title">2048 Cupcakes</h2>
-            <div class="game-desc">A sweet twist on the classic 2048 game. Merge cupcakes to reach the ultimate treat!</div>
-            <iframe class="game-iframe" src="https://cupcakes2048.com/" title="2048 Cupcakes Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://cupcakes2048.com/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Super Mario Bros -->
-        <section class="game-card" id="game-mario">
-            <h2 class="game-title">Super Mario Bros</h2>
-            <div class="game-desc">Play the legendary Super Mario Bros platformer right in your browser!</div>
-            <iframe class="game-iframe" src="https://supermario-game.com/" title="Super Mario Bros Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://supermario-game.com/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- HexGL -->
-        <section class="game-card" id="game-hexgl">
-            <h2 class="game-title">HexGL</h2>
-            <div class="game-desc">A fast-paced futuristic racing game with stunning 3D graphics.</div>
-            <iframe class="game-iframe" src="https://hexgl.bkcore.com/play/" title="HexGL Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://hexgl.bkcore.com/play/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Crossy Road -->
-        <section class="game-card" id="game-crossyroad">
-            <h2 class="game-title">Crossy Road</h2>
-            <div class="game-desc">Help your character cross roads, rivers, and more in this endless arcade hopper.</div>
-            <iframe class="game-iframe" src="https://crossyroad.com/play/" title="Crossy Road Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://crossyroad.com/play/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-        <!-- Line Rider -->
-        <section class="game-card" id="game-linerider">
-            <h2 class="game-title">Line Rider</h2>
-            <div class="game-desc">Draw lines and watch your sledder ride them in this creative physics sandbox.</div>
-            <iframe class="game-iframe" src="https://www.linerider.com/" title="Line Rider Game" loading="lazy" allowfullscreen></iframe>
-            <a class="open-btn" href="https://www.linerider.com/" target="_blank" rel="noopener">Open in New Window</a>
-        </section>
-    </div>
-</div>
-<footer>
-    &copy; 2024 Online Web Game Hub. All rights reserved. | Contact: admin@example.com
-</footer>
-</body>
-</html> 
+from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+from models import db, User, Game, Comment, Favorite
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+db.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+@app.route('/')
+def index():
+    # 支持分类、搜索、排序
+    category = request.args.get('category')
+    search = request.args.get('search')
+    sort = request.args.get('sort')
+    query = Game.query
+    if category:
+        query = query.filter_by(category=category)
+    if search:
+        query = query.filter(Game.name.ilike(f'%{search}%'))
+    if sort == 'rating':
+        query = query.order_by(Game.rating.desc())
+    elif sort == 'play_count':
+        query = query.order_by(Game.play_count.desc())
+    games = query.all()
+    categories = db.session.query(Game.category).distinct().all()
+    return render_template('index.html', games=games, categories=categories)
+
+@app.route('/game/<int:game_id>')
+def game_detail(game_id):
+    game = Game.query.get_or_404(game_id)
+    comments = Comment.query.filter_by(game_id=game_id).order_by(Comment.created_at.desc()).all()
+    is_favorite = False
+    if current_user.is_authenticated:
+        is_favorite = Favorite.query.filter_by(user_id=current_user.id, game_id=game_id).first() is not None
+    return render_template('game_detail.html', game=game, comments=comments, is_favorite=is_favorite)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user and check_password_hash(user.password_hash, password):
+            login_user(user)
+            return redirect(url_for('index'))
+        flash('Invalid username or password')
+    return render_template('login.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        if User.query.filter_by(username=username).first():
+            flash('Username already exists')
+        elif User.query.filter_by(email=email).first():
+            flash('Email already registered')
+        else:
+            user = User(username=username, email=email, password_hash=generate_password_hash(password))
+            db.session.add(user)
+            db.session.commit()
+            flash('Registration successful, please login')
+            return redirect(url_for('login'))
+    return render_template('register.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+@app.route('/user')
+@login_required
+def user_center():
+    favorites = Favorite.query.filter_by(user_id=current_user.id).all()
+    favorite_games = [Game.query.get(f.game_id) for f in favorites]
+    comments = Comment.query.filter_by(user_id=current_user.id).all()
+    return render_template('user_center.html', favorite_games=favorite_games, comments=comments)
+
+# ...后续会补充评论、收藏、筛选、排序、全屏、推荐等功能
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True) 
